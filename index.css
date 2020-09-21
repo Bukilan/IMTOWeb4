@@ -1,0 +1,45 @@
+.page-wrapper {
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 20px;
+}
+
+.weather-block_container {
+    width: 100%;
+    padding: 20px 0;
+    color: #7d8e93;
+    font-style: normal;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.weather-block_container__header_current {
+    position: relative;
+    justify-content: center;
+}
+
+.current-weather__header_label {
+    font-size: 24px;
+    position: absolute;
+    left: 0;
+}
+
+.current-weather__header_geo {
+    border: none;
+    background: #c9d2d7;
+    padding: 10px 40px;
+    border-radius: 5px;
+    color: #7d8e93;
+    cursor: pointer;
+}
+
+.current-weather__header_geo:focus {
+    outline: none;
+}
+
+.weather-block {
+
+}
