@@ -1,5 +1,4 @@
 .page-wrapper {
-    width: 100vw;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0 20px;
@@ -14,6 +13,10 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.weather-block {
+
 }
 
 .weather-block_container__header_current {
@@ -40,6 +43,36 @@
     outline: none;
 }
 
-.weather-block {
+.weather-block_container__current {
+    justify-content: space-between;
+}
 
+.current-weather_location__city {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.current-weather_location__temperature_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.current-weather_location__temperature_icon {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #7d8e93;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #c7c7c7;
+}
+
+.current-weather_location__temperature_value {
+    font-size: 72px;
+    font-weight: 800;
+    color: #7d7d7d;
+    margin-left: 80px;
 }
