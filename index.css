@@ -2,6 +2,67 @@ button {
     cursor: pointer;
 }
 
+button:focus {
+    outline: none;
+}
+
+@media (max-width: 1120px) {
+    .page-wrapper {
+        padding: 0 3% !important;
+    }
+}
+
+@media (max-width: 970px) {
+    .weather-block_container__favourite, .weather-block_container__header_favourite {
+        justify-content: center !important;
+    }
+    .weather-block_header--favourite {
+        width: 440px !important;
+    }
+
+}
+
+@media (max-width: 805px) {
+    .weather-block_container__current {
+        justify-content: center !important;
+    }
+    .weather-block_header--current {
+        width: 420px !important;
+    }
+    .current-weather__header_geo {
+        display: none !important;
+    }
+    .current-weather__header_geo--mobile {
+        display: block !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .weather-block_header--favourite {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .favourite-weather_container {
+        margin-top: 10px;
+    }
+}
+
+
+@media (max-width: 470px) {
+    .weather-data {
+        min-width: 320px !important;
+    }
+    .weather-block_header--current {
+        width: 320px !important;
+    }
+    .weather-block_header--favourite {
+        width: 320px !important;
+    }
+    .page-wrapper {
+        padding: 0 !important;
+    }
+}
+
 .page-wrapper {
     overflow-y: auto;
     overflow-x: hidden;
@@ -25,8 +86,22 @@ button {
     flex-direction: column;
 }
 
+.weather-block_header--current {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-block_header--favourite {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .weather-data {
-    min-width: 400px;
+    min-width: 420px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,8 +140,14 @@ button {
 
 .current-weather__header_label {
     font-size: 32px;
-    position: absolute;
-    left: 0;
+}
+
+.current-weather__header_geo_container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
 }
 
 .current-weather__header_geo {
@@ -75,10 +156,19 @@ button {
     padding: 10px 40px;
     border-radius: 5px;
     color: #7d8e93;
+    text-align: center;
 }
 
-.current-weather__header_geo:focus, .favourite-weather_input:focus, .plus_button:focus, .close_button:focus {
-    outline: none;
+.current-weather__header_geo--mobile {
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: #7d8e93;
+    text-align: center;
+    background: #c9d2d7 url("./assets/images/refresh.svg") no-repeat 50% 50%;
+    background-size: 50%;
+    display: none;
 }
 
 .weather-block_container__current {

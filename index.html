@@ -8,12 +8,17 @@
 <body>
 <div class="page-wrapper">
     <div class="weather-block_container weather-block_container__header_current">
-        <div class="current-weather__header_label">
-            Погода здесь
+        <div class="weather-block_header--current">
+            <div class="current-weather__header_label">
+                Погода здесь
+            </div>
+            <div type="button" class="current-weather__header_geo_container">
+                <button type="button" class="current-weather__header_geo">
+                    Обновить геолокацию
+                </button>
+                <button type="button" class="current-weather__header_geo--mobile"/>
+            </div>
         </div>
-        <button type="button" class="current-weather__header_geo">
-            Обновить геолокацию
-        </button>
     </div>
     <div class="weather-block_container weather-block_container__current">
         <div class="weather-block">
@@ -74,15 +79,188 @@
         </div>
     </div>
     <div class="weather-block_container weather-block_container__header_favourite">
-        <div class="favourite-weather_label">
-            Избранное
-        </div>
-        <div class="favourite-weather_container">
-            <input placeholder="Добавить новый город" class="favourite-weather_input"/>
-            <button type="button" class="plus_button"/>
+        <div class="weather-block_header--favourite">
+            <div class="favourite-weather_label">
+                Избранное
+            </div>
+            <div class="favourite-weather_container">
+                <input placeholder="Добавить новый город" class="favourite-weather_input"/>
+                <button type="button" class="plus_button"/>
+            </div>
         </div>
     </div>
     <div class="weather-block_container weather-block_container__favourite">
+        <div class="weather-block">
+            <div class="common-weather_container">
+                <div class="common-weather_inner-container">
+                    <div class="common-weather_city">
+                        Moscow
+                    </div>
+                    <div class="common-weather_temperature">
+                        5°C
+                    </div>
+                    <!--заменить на img-->
+                    <div class="common-weather_icon">
+                        Иконка погоды
+                    </div>
+                </div>
+                <button type="button" class="close_button"/>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Ветер
+                </div>
+                <div class="weather-data_value">
+                    Moderate breeze, 6.0 m/s, North-northwest
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Облачность
+                </div>
+                <div class="weather-data_value">
+                    Broken clouds
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Давление
+                </div>
+                <div class="weather-data_value">
+                    1013 hpa
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Влажность
+                </div>
+                <div class="weather-data_value">
+                    52%
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Координаты
+                </div>
+                <div class="weather-data_value">
+                    [59.88, 30.42]
+                </div>
+            </div>
+        </div>
+        <div class="weather-block">
+            <div class="common-weather_container">
+                <div class="common-weather_inner-container">
+                    <div class="common-weather_city">
+                        Moscow
+                    </div>
+                    <div class="common-weather_temperature">
+                        5°C
+                    </div>
+                    <!--заменить на img-->
+                    <div class="common-weather_icon">
+                        Иконка погоды
+                    </div>
+                </div>
+                <button type="button" class="close_button"/>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Ветер
+                </div>
+                <div class="weather-data_value">
+                    Moderate breeze, 6.0 m/s, North-northwest
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Облачность
+                </div>
+                <div class="weather-data_value">
+                    Broken clouds
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Давление
+                </div>
+                <div class="weather-data_value">
+                    1013 hpa
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Влажность
+                </div>
+                <div class="weather-data_value">
+                    52%
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Координаты
+                </div>
+                <div class="weather-data_value">
+                    [59.88, 30.42]
+                </div>
+            </div>
+        </div>
+        <div class="weather-block">
+            <div class="common-weather_container">
+                <div class="common-weather_inner-container">
+                    <div class="common-weather_city">
+                        Moscow
+                    </div>
+                    <div class="common-weather_temperature">
+                        5°C
+                    </div>
+                    <!--заменить на img-->
+                    <div class="common-weather_icon">
+                        Иконка погоды
+                    </div>
+                </div>
+                <button type="button" class="close_button"/>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Ветер
+                </div>
+                <div class="weather-data_value">
+                    Moderate breeze, 6.0 m/s, North-northwest
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Облачность
+                </div>
+                <div class="weather-data_value">
+                    Broken clouds
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Давление
+                </div>
+                <div class="weather-data_value">
+                    1013 hpa
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Влажность
+                </div>
+                <div class="weather-data_value">
+                    52%
+                </div>
+            </div>
+            <div class="weather-data">
+                <div class="weather-data_key">
+                    Координаты
+                </div>
+                <div class="weather-data_value">
+                    [59.88, 30.42]
+                </div>
+            </div>
+        </div>
         <div class="weather-block">
             <div class="common-weather_container">
                 <div class="common-weather_inner-container">
