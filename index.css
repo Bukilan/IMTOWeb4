@@ -1,12 +1,12 @@
 .page-wrapper {
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 0 20px;
+    padding: 0 10%;
 }
 
 .weather-block_container {
     width: 100%;
-    padding: 20px 0;
+    padding: 10px 0;
     color: #7d8e93;
     font-style: normal;
     font-weight: normal;
@@ -21,18 +21,18 @@
     flex-direction: column;
 }
 
-.weather-block:last-child {
-    margin-bottom: 0;
-}
-
 .weather-data {
     min-width: 400px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px;
+    padding: 6px 10px;
     background: #a7afb0;
     margin-bottom: 10px;
+}
+
+.weather-data:last-child {
+    margin-bottom: 0;
 }
 
 .weather-data_key {
@@ -44,6 +44,14 @@
 .weather-data_value {
     color: #d4dcdd;
     font-size: 16px;
+}
+
+.weather-block_container__favourite, .weather-block_container__header_favourite {
+    justify-content: space-between;
+}
+
+.weather-block_container__favourite .weather-block {
+    padding-bottom: 20px;
 }
 
 .weather-block_container__header_current {
@@ -83,7 +91,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 30px;
+    padding: 35px 0 20px;
 }
 
 .current-weather_location__temperature_icon {
@@ -101,5 +109,5 @@
     font-size: 72px;
     font-weight: 800;
     color: #7d7d7d;
-    margin-left: 80px;
+    margin-left: 60px;
 }
