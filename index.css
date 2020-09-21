@@ -1,3 +1,7 @@
+button {
+    cursor: pointer;
+}
+
 .page-wrapper {
     overflow-y: auto;
     overflow-x: hidden;
@@ -60,7 +64,7 @@
 }
 
 .current-weather__header_label {
-    font-size: 24px;
+    font-size: 32px;
     position: absolute;
     left: 0;
 }
@@ -71,10 +75,9 @@
     padding: 10px 40px;
     border-radius: 5px;
     color: #7d8e93;
-    cursor: pointer;
 }
 
-.current-weather__header_geo:focus {
+.current-weather__header_geo:focus, .favourite-weather_input:focus, .plus_button:focus, .close_button:focus {
     outline: none;
 }
 
@@ -110,4 +113,32 @@
     font-weight: 800;
     color: #7d7d7d;
     margin-left: 60px;
+}
+
+.favourite-weather_label {
+    font-size: 32px;
+}
+
+.favourite-weather_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.favourite-weather_input {
+    border: none;
+    color: #a0a7a8;
+    background: #f1f1f1;
+    padding: 10px;
+    width: 220px;
+}
+
+.plus_button {
+    background: #708188 url("./assets/images/plus.svg") no-repeat 50% 50%;
+    background-size: 50%;
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-left: 10px;
 }
