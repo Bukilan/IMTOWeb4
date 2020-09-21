@@ -16,7 +16,34 @@
 }
 
 .weather-block {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
+.weather-block:last-child {
+    margin-bottom: 0;
+}
+
+.weather-data {
+    min-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    background: #a7afb0;
+    margin-bottom: 10px;
+}
+
+.weather-data_key {
+    color: #ebf5f9;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.weather-data_value {
+    color: #d4dcdd;
+    font-size: 16px;
 }
 
 .weather-block_container__header_current {
