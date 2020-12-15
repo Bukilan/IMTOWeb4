@@ -16,7 +16,7 @@
                 Погода здесь
             </h1>
             <div type="button" class="current-weather__header_geo_container">
-                <button type="button" class="current-weather__header_geo">
+                <button type="button" class="current-weather__header_geo"  onclick="initCurrentPosition()">
                     Обновить геолокацию
                 </button>
                 <button type="button" class="current-weather__header_geo--mobile" />
@@ -34,7 +34,7 @@
                 </h2>
                 <form id="form" class="favourite-weather_container">
                     <input placeholder="Добавить новый город" class="favourite-weather_input"/>
-                    <button type="button" class="plus_button"/>
+                    <button type="submit" class="plus_button"/>
                 </form>
             </div>
         </div>
