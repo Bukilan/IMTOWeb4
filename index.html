@@ -2,16 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
 <div class="page-wrapper">
-    <div class="weather-block_container weather-block_container__header_current">
+    <header  class="weather-block_container weather-block_container__header_current">
         <div class="weather-block_header--current">
-            <div class="current-weather__header_label">
+            <h1 class="current-weather__header_label">
                 Погода здесь
-            </div>
+            </h1>
             <div type="button" class="current-weather__header_geo_container">
                 <button type="button" class="current-weather__header_geo">
                     Обновить геолокацию
@@ -19,25 +22,86 @@
                 <button type="button" class="current-weather__header_geo--mobile" />
             </div>
         </div>
-    </div>
-    <div class="weather-block_container weather-block_container__current">
+    </header >
+    <main>
+        <section class="weather-block_container weather-block_container__current">
 
-    </div>
-    <div class="weather-block_container weather-block_container__header_favourite">
-        <div class="weather-block_header--favourite">
-            <div class="favourite-weather_label">
-                Избранное
+        </section>
+        <div class="weather-block_container weather-block_container__header_favourite">
+            <div class="weather-block_header--favourite">
+                <h2 class="favourite-weather_label">
+                    Избранное
+                </h2>
+                <form id="form" class="favourite-weather_container">
+                    <input placeholder="Добавить новый город" class="favourite-weather_input"/>
+                    <button type="button" class="plus_button"/>
+                </form>
             </div>
-            <div class="favourite-weather_container">
-                <input placeholder="Добавить новый город" class="favourite-weather_input"/>
-                <button type="button" class="plus_button"/>
+        </div>
+        <section class="weather-block_container weather-block_container__favourite">
+
+        </section>
+    </main>
+</div>
+
+<template id="loader">
+    <div class="loader-container">
+        <img class="loader" src="./src/assets/images/loader.gif" alt="loading">
+    </div>
+</template>
+
+<template id="weather-data-block">
+    <li class="weather-data">
+        <div class="weather-data_key">
+            {title}
+        </div>
+        <div class="weather-data_value">
+            {value}
+        </div>
+    </li>
+</template>
+
+<template id="main-city">
+    {loading}
+    <div class="weather-block">
+        <div class="current-weather_location__city">
+            {title}
+        </div>
+        <div class="current-weather_location__temperature_container">
+            <!--заменить на img-->
+            <div class="current-weather_location__temperature_icon"></div>
+            <div class="current-weather_location__temperature_value">
+                {temp}°C
             </div>
         </div>
     </div>
-    <div class="weather-block_container weather-block_container__favourite">
+    <ul class="weather-block">
+        {stats}
+    </ul>
+</template>
 
+<template id="fav-city">
+    <div class="weather-block">
+        {loading}
+        <div class="common-weather_container">
+            <div class="common-weather_inner-container">
+                <div class="common-weather_city">
+                    {title}
+                </div>
+                <div class="common-weather_temperature">
+                    {temp}°C
+                </div>
+                <!--заменить на img-->
+                <div class="common-weather_icon"></div>
+            </div>
+            <button type="button" class="close_button"  data-id="{id}"/>
+        </div>
+        <ul class="common-weather_info-container">
+            {stats}
+        </ul>
     </div>
-</div>
+</template>
+
 <script src="src/js/index.js"></script>
 </body>
 </html>

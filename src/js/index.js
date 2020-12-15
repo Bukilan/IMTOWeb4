@@ -4,6 +4,11 @@ const blockExtraWrapper = document.querySelector('.weather-block_container__favo
 const btnAdd = document.querySelector('.plus_button')
 const inputAdd = document.querySelector('.favourite-weather_input')
 
+const cityFavTemplate = document.querySelector('#fav-city')
+const cityMainTemplate = document.querySelector('#main-city')
+const dataBlockTemplate = document.querySelector('#weather-data-block')
+const loaderTemplate = document.querySelector('#loader')
+
 const apikey = 'ff37c2586fdf7285c6c3f9aefe1c3860'
 
 // забираем данные с api
@@ -132,69 +137,50 @@ const weatherMapper = (obj) => {
     }
 }
 
+function fillTemplate(template, values) {
+    return template.replace(/{([^{}]*)}/g, function (a, b) {
+        return values[b];
+    });
+}
+
 const renderLoader = () => {
-    return `
-        <div class="loader-container">
-            <img class="loader" src="./src/assets/images/loader.gif" alt="loading">
-        </div>`
+    return loaderTemplate.innerHTML
 }
 
 const renderStats = stats => {
     if(!stats) return ''
-    return stats.map(({title, value}) =>
-        `<div class="weather-data">
-                <div class="weather-data_key">
-                    ${title}
-                </div>
-                <div class="weather-data_value">
-                    ${value}
-                </div>
-            </div>
-        `).join('')
+    return stats.map(({title, value}) =>fillTemplate(dataBlockTemplate.innerHTML, {title, value})).join('')
 }
 
 const renderBlockMain = () => {
-    blockMain.innerHTML = `
-        ${state.current.loading?renderLoader():''}
-        
-           <div class="weather-block">
-            <div class="current-weather_location__city">
-                 ${state.current.title}
-            </div>
-            <div class="current-weather_location__temperature_container">
-                <!--заменить на img-->
-                <div class="current-weather_location__temperature_icon"></div>
-                <div class="current-weather_location__temperature_value">
-                    ${state.current.temp}°C
-                </div>
-            </div>
-        </div>
-        <div class="weather-block">
-             ${renderStats(state.current.params)}
-        </div>`
+    blockMain.innerHTML = ``
+    const values = {
+        loading: state.current.loading ? renderLoader() : '',
+        title: state.current.title,
+        temp: state.current.temp,
+        stats: renderStats(state.current.params)
+    }
+    const node = cityMainTemplate.cloneNode(true)
+    node.innerHTML = fillTemplate(node.innerHTML, values)
+    const nodeImported = document.importNode(node.content, true)
+    blockMain.appendChild(nodeImported)
 }
 
 const renderBlocksExtra = () => {
-    const blocks = state.starred.map(loc => `
-        <div class="weather-block">
-            ${loc.loading ? renderLoader():''}
-            <div class="common-weather_container">
-                <div class="common-weather_inner-container">
-                    <div class="common-weather_city">
-                        ${loc.title}
-                    </div>
-                    <div class="common-weather_temperature">
-                        ${loc.temp}°C
-                    </div>
-                    <!--заменить на img-->
-                    <div class="common-weather_icon"></div>
-                </div>
-                <button type="button" class="close_button"  data-id="${loc.id}"/>
-            </div>
-            ${renderStats(loc.params)}
-        </div>
-    `)
-    blockExtraWrapper.innerHTML = blocks.join('');
+    blockExtraWrapper.innerHTML = "";
+    state.starred.forEach(loc => {
+        const values = {
+            loading: loc.loading ? renderLoader() : '',
+            title: loc.title,
+            temp: loc.temp,
+            id: loc.id,
+            stats: renderStats(loc.params)
+        }
+        const node = cityFavTemplate.cloneNode(true)
+        node.innerHTML = fillTemplate(node.innerHTML, values)
+        const nodeImported = document.importNode(node.content, true)
+        blockExtraWrapper.appendChild(nodeImported)
+    });
     [...document.querySelectorAll('.close_button')].forEach(it => {
         it.addEventListener('click', () => {
             const id = it.getAttribute('data-id')
