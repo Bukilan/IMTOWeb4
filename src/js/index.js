@@ -1,12 +1,15 @@
-const apikey = 'd1b9e4aebf1311c3832b4a366dfe8604'
 
 const blockMain = document.querySelector('.weather-block_container__current')
 const blockExtraWrapper = document.querySelector('.weather-block_container__favourite')
 const btnAdd = document.querySelector('.plus_button')
 const inputAdd = document.querySelector('.favourite-weather_input')
 
+const apikey = 'ff37c2586fdf7285c6c3f9aefe1c3860'
+
+// забираем данные с api
 const fetchWeatherGet = url => fetch(`${url}&appid=${apikey}`).then(res => res.json())
 
+// костыльный способ узнать направление на openweathermap
 const getCardinal = angle => {
     const degreePerDirection = 360 / 8;
 
@@ -22,9 +25,10 @@ const getCardinal = angle => {
                                 : "Северо-Запад";
 }
 
+// Класс апишки с эндпоинтами
 class Api {
     constructor() {
-        this.endpoint = 'http://api.openweathermap.org/data/2.5'
+        this.endpoint = 'https://api.openweathermap.org/data/2.5'
     }
 
     weatherByString(str) {
@@ -40,23 +44,27 @@ class Api {
     }
 }
 
+// Ассинхронно берем из навигатора долготу и широту
 const getCurrentPositionAsync =
     () => new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, {
         enableHighAccuracy: true
     }))
 
+// Враппер с помощью proxy. Помогает нам при изменении state триггерить нужную функцию отрисовки
 const wrap = obj => {
     return new Proxy(obj, {
         get(target, propKey) {
             return target[propKey]
         },
         set(target, prop, value) {
+            console.log(value)
             target[prop] = value
             updateHandler(prop)
         }
     })
 }
 
+// Данные
 let __state__ = {
     current: {
         loading: false,
@@ -69,15 +77,19 @@ let __state__ = {
     starred: []
 }
 
+// Оборачиваем данные в прокси
 const state = wrap(__state__)
 
+// список хэндлеров, которые нужно вызвать чтобы отрисовать какой-то элемент
 let updateListeners = {}
 
+// обновляем хэндлеры
 const updateHandler = prop => {
     if (Array.isArray(updateListeners[prop]))
         updateListeners[prop].forEach(handler => handler())
 }
 
+// добавляем хэндлеры
 const addListener = (prop, handler) => {
     if (Array.isArray(updateListeners[prop]))
         updateListeners[prop].push(handler)
@@ -85,6 +97,7 @@ const addListener = (prop, handler) => {
         updateListeners[prop] = [handler]
 }
 
+// просто хэлпер формирующий объект для отображения
 const param = (title, value) => {
     return {title, value}
 }
@@ -209,15 +222,29 @@ async function initCurrentPosition() {
         data = await api.weatherById(spbid)
     }
 
+    const lsData = await initFromLs()
+
     state.current = {
         ...state.current,
         ...weatherMapper(data),
         loading: false
     }
+    state.starred = [
+        ...state.starred,
+        ...lsData,
+    ]
+
+    console.log(state)
 }
 
 async function initFromLs() {
-    const lsData = localStorage.getItem('cities')
+    let citiesLs = []
+    const lsData = JSON.parse(localStorage.getItem('cities'))
+    for (let item of lsData) {
+        const data = await api.weatherById(item)
+        citiesLs.push(weatherMapper(data))
+    }
+    return citiesLs
 }
 
 async function onBtnAddClick() {
