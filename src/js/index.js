@@ -240,6 +240,7 @@ async function initCurrentPosition() {
 async function initFromLs() {
     let citiesLs = []
     const lsData = JSON.parse(localStorage.getItem('cities'))
+    if (!lsData) return []
     for (let item of lsData) {
         const data = await api.weatherById(item)
         citiesLs.push(weatherMapper(data))
