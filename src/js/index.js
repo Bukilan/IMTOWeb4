@@ -134,8 +134,8 @@ const weatherMapper = (obj) => {
 
 const renderLoader = () => {
     return `
-        <div class="loader">
-            <img src="https://schedule-widget.emias.info/loader-circle.gif" alt="loading">
+        <div class="loader-container">
+            <img class="loader" src="./src/assets/images/loader.gif" alt="loading">
         </div>`
 }
 
@@ -177,7 +177,7 @@ const renderBlockMain = () => {
 const renderBlocksExtra = () => {
     const blocks = state.starred.map(loc => `
         <div class="weather-block">
-            ${loc.loading?renderLoader():''}
+            ${loc.loading ? renderLoader():''}
             <div class="common-weather_container">
                 <div class="common-weather_inner-container">
                     <div class="common-weather_city">
@@ -242,8 +242,10 @@ async function initFromLs() {
     const lsData = JSON.parse(localStorage.getItem('cities'))
     if (!lsData) return []
     for (let item of lsData) {
-        const data = await api.weatherById(item)
-        citiesLs.push(weatherMapper(data))
+        if (item) {
+            const data = await api.weatherById(item)
+            citiesLs.push(weatherMapper(data))
+        }
     }
     return citiesLs
 }
@@ -256,11 +258,17 @@ async function onBtnAddClick() {
         state.starred = [...state.starred, {loading:true}]
         const data = await api.weatherByString(val)
         state.starred.pop()
-        if(state.starred.map(_=>_.id).includes(data.id)) return alert('Такой город уже есть!')
+        if(state.starred.map(_=>_.id).includes(data.id)) {
+            inputAdd.disabled = false
+            inputAdd.value = ''
+            state.starred = [...state.starred]
+            return alert('Такой город уже есть!')
+        }
         saveCityToLS(data.id)
         state.starred = [...state.starred, weatherMapper(data)]
     } catch(err) {
-        alert('У нас определенно что-то сломалось( Перезагрузите страницу и введите другой город')
+        alert('У нас определенно что-то сломалось(')
+        state.starred = [...state.starred]
         console.error(err)
     }
     inputAdd.disabled = false
