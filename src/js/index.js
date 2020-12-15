@@ -9,7 +9,7 @@ const dataBlockTemplate = document.querySelector('#weather-data-block')
 const loaderTemplate = document.querySelector('#loader')
 
 
-const getCardinal = angle => {
+const getCoordinates = angle => {
     const degreePerDirection = 360 / 8;
 
     const offsetAngle = angle + degreePerDirection / 2;
@@ -136,7 +136,7 @@ const weatherMapper = (obj) => {
             param('Влажность', main.humidity + '%'),
             param('Давление', main.pressure + ' гПа'),
             param('Ветер м/с', wind.speed + ' м/с'),
-            param('Ветер (направление)', getCardinal(wind.angle)),
+            param('Ветер (направление)', getCoordinates(wind.angle)),
             param('Координаты', Object.values(coord).join(',')),
         ],
     }
@@ -265,4 +265,4 @@ function mainFunc() {
     loadFavorites()
 }
 
-mainFunc()
+module.exports = { getCoordinates, getCurrentPositionAsync };
