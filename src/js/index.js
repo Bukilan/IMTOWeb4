@@ -51,7 +51,7 @@ class Api {
             body: JSON.stringify({
                 id
             })
-        })
+        }).then(res => res.json())
     }
 
     getFavorites() {
@@ -103,7 +103,7 @@ let __state__ = {
     starred: []
 }
 
-const state = wrap(__state__)
+let state = wrap(__state__)
 
 let updateListeners = {}
 
@@ -169,6 +169,7 @@ const renderBlockMain = () => {
     node.innerHTML = fillTemplate(node.innerHTML, values)
     const nodeImported = document.importNode(node.content, true)
     blockMain.appendChild(nodeImported)
+    return blockMain.innerHTML
 }
 
 const renderBlocksExtra = () => {
@@ -193,6 +194,7 @@ const renderBlocksExtra = () => {
             onRemoveClick(id)
         })
     })
+    return blockExtraWrapper.innerHTML
 }
 
 async function initCurrentPosition() {
@@ -257,6 +259,14 @@ async function onRemoveClick(id) {
     await api.removeFavorite(id)
 }
 
+function setState(someNewState) {
+    state = someNewState
+}
+
+function getState() {
+    return state
+}
+
 function mainFunc() {
     document.querySelector('#form').addEventListener('submit', onBtnAddClick)
     addListener('current', renderBlockMain)
@@ -265,4 +275,24 @@ function mainFunc() {
     loadFavorites()
 }
 
-module.exports = { getCoordinates, getCurrentPositionAsync };
+module.exports = {
+    loadFavorites,
+    initCurrentPosition,
+    renderBlockMain,
+    renderBlocksExtra,
+    renderStats,
+    renderLoader,
+    weatherMapper,
+    Api,
+    getCoordinates,
+    fillTemplate,
+    getCurrentPositionAsync,
+    wrap,
+    addListener,
+    updateHandler,
+    setState,
+    param,
+    getState,
+    onBtnAddClick,
+    onRemoveClick,
+}
