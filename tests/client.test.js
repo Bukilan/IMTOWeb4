@@ -383,33 +383,56 @@ describe("initCurrentPosition()", () => {
   })
   it("Должен возвращать правильный state, если передана позиция", async () => {
     global.fetch = fetchWithResponse({
-      "coord": {"lon": 45, "lat": 50},
-      "weather": [{"id": 804, "main": "Clouds", "description": "overcast clouds", "icon": "04n"}],
-      "base": "stations",
-      "main": {
-        "temp": -4.39,
-        "feels_like": -9.67,
-        "temp_min": -4.39,
-        "temp_max": -4.39,
-        "pressure": 1025,
-        "humidity": 95,
-        "sea_level": 1025,
-        "grnd_level": 1011
+      "coord":{
+        "lon":30.25,
+        "lat":60
       },
-      "visibility": 10000,
-      "wind": {"speed": 3.81, "deg": 268},
-      "clouds": {"all": 100},
-      "dt": 1608222318,
-      "sys": {"country": "RU", "sunrise": 1608180823, "sunset": 1608209928},
-      "timezone": 14400,
-      "id": 544012,
-      "name": "Kostarëvo",
-      "cod": 200
+      "weather":[
+        {
+          "id":600,
+          "main":"Snow",
+          "description":"light snow",
+          "icon":"13n"
+        }
+      ],
+      "base":"stations",
+      "main":{
+        "temp":-1.28,
+        "feels_like":-4.21,
+        "temp_min":-1.67,
+        "temp_max":-1.11,
+        "pressure":1019,
+        "humidity":92
+      },
+      "visibility":144,
+      "wind":{
+        "speed":0.89,
+        "deg":187,
+        "gust":5.36
+      },
+      "snow":{
+        "1h":0.28
+      },
+      "clouds":{
+        "all":100
+      },
+      "dt":1608271078,
+      "sys":{
+        "type":3,
+        "id":197864,
+        "country":"RU",
+        "sunrise":1608274756,
+        "sunset":1608295934
+      },
+      "timezone":10800,
+      "id":535729,
+      "name":"Komendantsky aerodrom",
+      "cod":200
     })
     await client.initCurrentPosition()
     const currentState = client.getState()
-    expect(currentState.current).toHaveProperty("title", "Kostarëvo")
-    expect(currentState.current).toHaveProperty("id", 544012)
+    expect(currentState.current).toHaveProperty("title", "Komendantsky aerodrom")
+    expect(currentState.current).toHaveProperty("id", 535729)
   })
   it("Должен возвращать корректный state, если позиция не передана", async () => {
     global.fetch = fetchWithResponse({
