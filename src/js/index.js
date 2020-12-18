@@ -236,7 +236,8 @@ async function initFromLs() {
     return citiesLs
 }
 
-async function onBtnAddClick() {
+async function onBtnAddClick(e) {
+    e.preventDefault()
     const val = inputAdd.value
     inputAdd.disabled = true
     inputAdd.value = 'Загрузка...'
@@ -266,7 +267,7 @@ function onRemoveClick(id) {
 }
 
 function mainFunc() {
-    btnAdd.addEventListener('click', onBtnAddClick)
+    document.querySelector('#form').addEventListener('submit', onBtnAddClick)
     addListener('current', renderBlockMain)
     addListener('starred', renderBlocksExtra)
     initCurrentPosition()
